@@ -118,18 +118,16 @@ const renderTasks = _ => {
     closeFunction();
 }
 
-// If the local storage array has any tasks (length != 0), render them.
-
-if (JSON.parse(localStorage.getItem("taskArray")).length) {
-    console.log(JSON.parse(localStorage.getItem("taskArray")))
+// If the local storage array exists & has any tasks (length != 0), render them.
+if (JSON.parse(localStorage.getItem("taskArray")) && JSON.parse(localStorage.getItem("taskArray")).length) {
     taskListArr = JSON.parse(localStorage.getItem("taskArray"));
     renderTasks()
 }
 
 // Fn to save tasks to local storage.
 
-const saveToLocal = _ => {
-    localStorage.setItem("taskArray", JSON.stringify(taskListArr))
+function saveToLocal() {
+    localStorage.setItem("taskArray", JSON.stringify(taskListArr));
 }
 
 
