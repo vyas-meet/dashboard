@@ -54,7 +54,7 @@ footer{
 
 .credits{
     margin: 1em 0.5em 0 auto;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.55);
     color: rgb(39, 39, 39);
     padding: 0.8em 1.6em;
     border-radius: 5px;
@@ -87,6 +87,9 @@ footer{
 .todo__tasklist{
     list-style-type: none;
 }
+.todo__tasklist li {
+    text-align: start;
+}
 .todo__task{
     display: flex;
     justify-content: space-between;
@@ -97,16 +100,16 @@ footer{
     transition: 1s border-bottom ease-in;
 }
 .todo__task__closeBtn{
-    padding: 4px 3px 0px 4px;
-    text-align: center;
+    display: inline;
+    padding: 3px 2px 0px 3px;
+    /* text-align: center; */
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.431);
     border: none;
     cursor: pointer;
     color: #081c15;
-    margin-right: 6px;
-    margin-top: 5px;
     transition: 0.3s all;
+    margin: 0 0 0 auto;
 }
 .todo__task__closeBtn:hover, .todo__task__closeBtn:focus{
     color: #0161af;
