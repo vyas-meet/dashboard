@@ -23,6 +23,7 @@ navigator.geolocation.getCurrentPosition(pos => {
 
 const setDateTime = _ => {
     let time = new Date;
+    const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
@@ -42,6 +43,8 @@ const setDateTime = _ => {
         mins = parseInt(time.getMinutes()) < 10 ? `0${time.getMinutes()}` : time.getMinutes();
         clock.textContent = `${hours}:${mins}`
     }, 1000);
+
+    document.querySelector(".clockarea__day").textContent = weekdays[time.getDay()];
 
 }
 
@@ -140,8 +143,8 @@ taskInput.addEventListener("keyup", e => {
     if (e.currentTarget.value && e.key === "Enter") {
         e.preventDefault();
         let taskText = e.currentTarget.value;
-        e.currentTarget.value = null;
         taskListArr.push(taskText);
+        e.currentTarget.value = null;
         saveToLocal()
         renderTasks();
     }
