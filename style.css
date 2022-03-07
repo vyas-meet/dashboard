@@ -97,7 +97,7 @@ footer{
     transition: 1s border-bottom ease-in;
 }
 .todo__task__closeBtn{
-    padding: 4px 2px 0px;
+    padding: 4px 3px 0px 4px;
     text-align: center;
     border-radius: 50px;
     background: rgba(255, 255, 255, 0.431);
@@ -121,6 +121,7 @@ footer{
     color: white;
     height: 40px;
     padding: 0 10px;
+    border: 2px solid rgba(0, 0, 0, 0.6);
 }
 .todo__taskInput::placeholder{
     color:rgba(196, 250, 255, 0.5);

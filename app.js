@@ -65,12 +65,6 @@ const taskInput = document.getElementById("taskInput");
 const taskListEl = document.querySelector(".todo__tasklist");
 let taskListArr = [];
 
-const saveToLocal = _ => {
-    localStorage.setItem("taskArray", JSON.stringify(taskListArr))
-}
-
-
-
 // Fn to: create a new task
 
 const create = (task) => {
@@ -90,7 +84,6 @@ const create = (task) => {
     taskListEl.insertBefore(li, taskListEl.childNodes[0]);
 
 }
-
 // Fn to: Close button functionality.
 const closeFunction = () => {
     // Function for adding event listener.
@@ -99,6 +92,7 @@ const closeFunction = () => {
         const textIndex = taskListArr.indexOf(taskText);
         taskListArr.splice(textIndex, 1)
         renderTasks();
+        saveToLocal();
     }
 
     if (taskListArr.length) {
@@ -109,8 +103,8 @@ const closeFunction = () => {
     }
 }
 
-// Rendering all tasks.
 
+// Rendering all tasks.
 const renderTasks = _ => {
     taskListEl.innerHTML = null;
     taskListArr.forEach((task, index) => {
@@ -118,6 +112,25 @@ const renderTasks = _ => {
     })
     closeFunction();
 }
+
+// If the local storage array has any tasks (length != 0), render them.
+
+if (JSON.parse(localStorage.getItem("taskArray")).length) {
+    console.log(JSON.parse(localStorage.getItem("taskArray")))
+    taskListArr = JSON.parse(localStorage.getItem("taskArray"));
+    renderTasks()
+}
+
+// Fn to save tasks to local storage.
+
+const saveToLocal = _ => {
+    localStorage.setItem("taskArray", JSON.stringify(taskListArr))
+}
+
+
+
+
+
 
 // Adding a new task.
 
@@ -127,6 +140,7 @@ taskInput.addEventListener("keyup", e => {
         let taskText = e.currentTarget.value;
         e.currentTarget.value = null;
         taskListArr.push(taskText);
+        saveToLocal()
         renderTasks();
     }
 })
