@@ -40,7 +40,6 @@ header{
     padding: 0 0.4em;
 }
 .temp-sec{
-    margin: 1em 1.5em 0 auto;
     background-color: rgba(255, 255, 255, 0.5);
     color: black;
     padding: 0.4em 0.8em;
@@ -54,6 +53,7 @@ footer{
 }
 
 .credits{
+    margin: 1em 0.5em 0 auto;
     background-color: rgba(255, 255, 255, 0.7);
     color: rgb(39, 39, 39);
     padding: 0.8em 1.6em;
@@ -68,7 +68,7 @@ footer{
 
 /* To do */
 .todo-area{
-    margin: 1em 0.5em 0 auto;
+    margin: 1em 1.5em 0 auto;
     background-color: rgba(5, 0, 0, 0.5);
     border-radius: 8px;
     padding: 0.8em 2em;
@@ -129,4 +129,25 @@ footer{
 .todo__task__text{
     word-wrap: break-word;
     width: 90%;
+}
+
+@media (max-width: 1000px) {
+    *{
+        margin: 0 auto;
+        max-width: 100%;
+    }
+    body{
+        justify-content: space-evenly;
+    }
+   header, footer{
+       flex-direction: column;
+   }
+   .temp-sec, .credits{
+    margin: 10px auto;
+    text-align: center;
+   }
+   .todo-area, .clock-area{
+       max-width: 90%;
+       margin: 1em auto;
+   }
 }
