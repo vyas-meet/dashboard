@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Averia Serif Libre', cursive;
+}
+img{
+    max-width: 100%;
+}
+body{
+    height: 100vh;
+    background: no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+header{
+    margin: 1em 2em 1em auto;
+    font-size: 1.35rem;
+    color: white;
+}
+.temp-sec{
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
+    padding: 0.4em 0.8em;
+    border-radius: 5px;
+}
+.clock-area{
+    margin: auto;
+    background-color: rgba(5, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 0.8em 2em;
+    font-size: 3.5rem;
+    color: aliceblue;
+    font-weight: bold;
+    text-align: center;
+}
+footer{
+    margin: 1em;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: rgb(39, 39, 39);
+    padding: 0.8em 1.6em;
+    border-radius: 5px;
+    align-self: flex-start;
+}
+.location{
+    margin-bottom: 0.4em;
+}
+.auth{
+    color: rgb(104, 0, 95);
+}
