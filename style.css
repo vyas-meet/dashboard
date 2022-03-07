@@ -17,42 +17,115 @@ body{
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-content: stretch;
+    justify-content: space-between;
+    /* align-items: center; */
     flex-wrap: wrap;
 }
 header{
-    margin: 1em 2em 1em auto;
     font-size: 1.35rem;
     color: white;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+}
+.clock-area{
+    margin: 1em auto 0 1em;
+    background-color: rgba(5, 0, 0, 0.5);
+    border-radius: 8px;
+    font-size: 2.5rem;
+    color: aliceblue;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 0.4em;
 }
 .temp-sec{
+    margin: 1em 1.5em 0 auto;
     background-color: rgba(255, 255, 255, 0.5);
     color: black;
     padding: 0.4em 0.8em;
     border-radius: 5px;
 }
-.clock-area{
-    margin: auto;
-    background-color: rgba(5, 0, 0, 0.5);
-    border-radius: 8px;
-    padding: 0.8em 2em;
-    font-size: 3.5rem;
-    color: aliceblue;
-    font-weight: bold;
-    text-align: center;
-}
 footer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
     margin: 1em;
+}
+
+.credits{
     background-color: rgba(255, 255, 255, 0.7);
     color: rgb(39, 39, 39);
     padding: 0.8em 1.6em;
     border-radius: 5px;
-    align-self: flex-start;
 }
 .location{
     margin-bottom: 0.4em;
 }
 .auth{
     color: rgb(104, 0, 95);
+}
+
+/* To do */
+.todo-area{
+    margin: 1em 0.5em 0 auto;
+    background-color: rgba(5, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 0.8em 2em;
+    font-size: 1.2rem;
+    color: aliceblue;
+    font-weight: bold;
+    text-align: center;
+    min-height: 15em;
+    width: 30em;
+}
+
+
+.todo__body{
+    padding: 1em;
+}
+.todo__tasklist{
+    list-style-type: none;
+}
+.todo__task{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap:wrap;
+    padding: 0.3em 0;
+    border-bottom: #004973 solid 2px;
+    transition: 1s border-bottom ease-in;
+}
+.todo__task__closeBtn{
+    padding: 4px 2px 0px;
+    text-align: center;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.431);
+    border: none;
+    cursor: pointer;
+    color: #081c15;
+    margin-right: 6px;
+    margin-top: 5px;
+    transition: 0.3s all;
+}
+.todo__task__closeBtn:hover, .todo__task__closeBtn:focus{
+    color: #0161af;
+    background-color: rgba(255, 255, 255, 0.815);
+}
+.todo__taskInput{
+    width: 99%;
+    background: rgba(0, 80, 112, 0.6);
+    border-radius: 7px;
+    font-size: 1.15em;
+    margin-bottom: 1.5em;
+    color: white;
+    height: 40px;
+    padding: 0 10px;
+}
+.todo__taskInput::placeholder{
+    color:rgba(196, 250, 255, 0.5);
+}
+.todo__task__text{
+    word-wrap: break-word;
+    width: 90%;
 }

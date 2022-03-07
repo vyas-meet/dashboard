@@ -1,3 +1,4 @@
+// Function to set the background from the unsplash API.
 async function setBackground() {
     const res = await fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature");
     const data = await res.json();
@@ -6,7 +7,7 @@ async function setBackground() {
         `By <span class="auth">${data.user.first_name + " " + data.user.last_name}</span>, Unsplash.`
     document.querySelector(".location").textContent = data.location.name;
 }
-
+//  Fn to set temperature based on client location. 
 
 navigator.geolocation.getCurrentPosition(pos => {
     fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&units=metric`)
@@ -17,6 +18,7 @@ navigator.geolocation.getCurrentPosition(pos => {
         })
 });
 
+// Fn to update date and time every minute.
 
 
 const setDateTime = _ => {
@@ -33,12 +35,101 @@ const setDateTime = _ => {
     const dateDay = document.querySelector(".clockarea__date")
     dateDay.textContent = `${dayNames[time.getDay()]} ${monthNames[time.getMonth()]} ${time.getFullYear()}`
 
-    setInterval(() => {
+    const updateTime = setInterval(() => {
         time = new Date;
+        mins = parseInt(time.getMinutes()) < 10 ? `0${time.getMinutes()}` : time.getMinutes();
         clock.textContent = `${time.getHours()}:${mins}`
-    }, 60000);
+    }, 1000);
 
 }
 
 setBackground()
 setDateTime()
+
+
+//  To do.
+
+
+// Fetching elements. 
+
+const btnIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+class="close_svg" viewBox="0 0 16 16">
+<path fill-rule="evenodd"
+    d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z" />
+<path fill-rule="evenodd"
+    d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
+</svg>`;
+
+const body = document.body;
+const taskInput = document.getElementById("taskInput");
+const taskListEl = document.querySelector(".todo__tasklist");
+let taskListArr = [];
+
+const saveToLocal = _ => {
+    localStorage.setItem("taskArray", JSON.stringify(taskListArr))
+}
+
+
+
+// Fn to: create a new task
+
+const create = (task) => {
+    const li = document.createElement("li");
+    li.classList.add("todo__task")
+    // P is made, class & text added to p, P ADDED TO LI.
+    const p = document.createElement("p");
+    p.classList.add("todo__task__text");
+    p.innerText = task;
+    li.appendChild(p)
+    // Button is made, SVG added to Btn, Btn added to LI.
+    const btn = document.createElement("button");
+    btn.classList.add("todo__task__closeBtn");
+    btn.innerHTML = btnIcon;
+    li.appendChild(btn);
+    // LI finally pushed to DOM.
+    taskListEl.insertBefore(li, taskListEl.childNodes[0]);
+
+}
+
+// Fn to: Close button functionality.
+const closeFunction = () => {
+    // Function for adding event listener.
+    const onclickAdd = (e) => {
+        const taskText = e.currentTarget.previousSibling.innerText;
+        const textIndex = taskListArr.indexOf(taskText);
+        taskListArr.splice(textIndex, 1)
+        renderTasks();
+    }
+
+    if (taskListArr.length) {
+        taskListArr.forEach((task, index) => {
+            const btnEl = taskListEl.children[index].children[1]
+            btnEl.addEventListener("click", onclickAdd)
+        })
+    }
+}
+
+// Rendering all tasks.
+
+const renderTasks = _ => {
+    taskListEl.innerHTML = null;
+    taskListArr.forEach((task, index) => {
+        create(task);
+    })
+    closeFunction();
+}
+
+// Adding a new task.
+
+taskInput.addEventListener("keyup", e => {
+    if (e.currentTarget.value && e.key === "Enter") {
+        e.preventDefault();
+        let taskText = e.currentTarget.value;
+        e.currentTarget.value = null;
+        taskListArr.push(taskText);
+        renderTasks();
+    }
+})
+
+
+
